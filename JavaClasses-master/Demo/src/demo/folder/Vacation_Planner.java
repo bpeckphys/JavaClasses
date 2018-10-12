@@ -21,6 +21,7 @@ public class Vacation_Planner {
         
     }
     
+    // This method takes in the user's name and destination
     public static void greeting(){
         Scanner input = new Scanner(System.in);
         System.out.println("Welcome to Vacation Planner!");
@@ -35,6 +36,7 @@ public class Vacation_Planner {
         System.out.println("");
     }
     
+    // This method takes in the planned number of days, spending allowance, and currency conversion
     public static void cost(){
         Scanner input = new Scanner(System.in);
         System.out.print("How many days are you going to spend travelling? ");
@@ -63,6 +65,7 @@ public class Vacation_Planner {
         System.out.println("");
     }
     
+    // This method takes in the time difference and displays the destination time
     public static void time(){
         Scanner input = new Scanner(System.in);
         System.out.print("What is the time difference, in hours, between your home and your destination? ");
@@ -77,6 +80,7 @@ public class Vacation_Planner {
         System.out.println("");
     }
     
+    // This method takes in the area of the destination in km and comverts it to miles
     public static void area(){
         Scanner input = new Scanner(System.in);
         System.out.print("What is the square area of your destination country in km2? ");
