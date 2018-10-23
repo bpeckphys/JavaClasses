@@ -10,14 +10,16 @@ import java.util.*;
  * @author bpeck
  */
 public class BattleShip {
+    public static String[][] ocean;
+    public static String[][] compOcean;
     
     public static void main(String[] args){
-        String[][] ocean;
         ocean = new String[10][10];
+        compOcean = new String[10][10];
         intro();
-        printOcean(ocean);
-        placeShips(ocean);
-        gamePlay(ocean);
+        printOcean();
+        placeShips();
+        gamePlay();
     }
     
     public static void intro(){
@@ -27,7 +29,7 @@ public class BattleShip {
         System.out.println("");
     }
     
-    public static String[][] printOcean(String[][] ocean){
+    public static void printOcean(){
         System.out.println("   0123456789   ");
         for (int i = 0; i < ocean.length; i++){
             System.out.print(i + " |");
@@ -43,10 +45,9 @@ public class BattleShip {
             System.out.println("| " + i);
         }
         System.out.println("   0123456789   ");
-        return ocean;
     }
     
-    public static String[][] placeShips(String[][] ocean){
+    public static void placeShips(){
         Scanner input = new Scanner(System.in);
         for (int i = 0; i < 5; i++){
             boolean valid = false;
@@ -62,6 +63,7 @@ public class BattleShip {
                         valid = false;
                     }else if (ocean[x][y] == null){
                         ocean[x][y] = "1";
+                        compOcean[x][y] = "1";
                         valid = true;
                     }else{
                         valid = false;
@@ -71,7 +73,7 @@ public class BattleShip {
         }
         System.out.println("");
         System.out.println("");
-        printOcean(ocean);
+        printOcean();
         for (int i = 0; i < 5; i++){
             boolean valid = false;
             while (!valid){
@@ -85,6 +87,7 @@ public class BattleShip {
                         valid = false;
                     }else if (ocean[x][y] == null){
                         ocean[x][y] = "2";
+                        compOcean[x][y] = "2";
                         valid = true;
                     }else{
                         valid = false;
@@ -92,10 +95,9 @@ public class BattleShip {
                 }
             }
         }
-        return ocean;
     }
     
-    public static String[][] gamePlay(String[][] ocean){
+    public static String[][] gamePlay(){
         int myShips = 5;
         int compShips = 5;
         Scanner input = new Scanner(System.in);
@@ -121,10 +123,12 @@ public class BattleShip {
                         if(ocean[x][y].matches("2")){
                             System.out.println("Boom! You sunk the ship!");
                             ocean[x][y] = "!";
+                            compOcean[x][y] = "!";
                             compShips -= 1;
                         }else if (ocean[x][y].matches("1")){
                             System.out.println("Oh no, you sunk your own ship :(");
                             ocean[x][y] = "x";
+                            compOcean[x][y] = "x";
                             myShips -= 1;
                         }else{
                             System.out.println("Sorry, you missed");
@@ -148,24 +152,26 @@ public class BattleShip {
                     int y = rand.nextInt(10);
                     if(y < 0 || y > 9){
                         valid = false;
-                    }else if (ocean[x][y] == null){
-                        ocean[x][y] = "*";
+                    }else if (compOcean[x][y] == null){
+                        compOcean[x][y] = "*";
                         System.out.println("Computer missed");
                         valid = true;
-                    }else if (ocean[x][y].matches("[!x*]")){
+                    }else if (compOcean[x][y].matches("[!x*]")){
                         valid = false;
                     }else{
-                        if(ocean[x][y].matches("1")){
+                        if(compOcean[x][y].matches("1")){
                             System.out.println("The Computer sunk one of your ships!");
                             ocean[x][y] = "x";
+                            compOcean[x][y] = "x";
                             myShips -= 1;
                         }else if (ocean[x][y].matches("2")){
                             System.out.println("The Computer sunk one of its own ships");
                             ocean[x][y] = "!";
+                            compOcean[x][y] = "!";
                             compShips -= 1;
                         }else{
                             System.out.println("Computer missed");
-                            ocean[x][y] = "*";
+                            compOcean[x][y] = "*";
                         }
                         valid = true;
                     }
@@ -173,7 +179,7 @@ public class BattleShip {
             }
             gameOver(myShips,compShips);
             System.out.println("");
-            printOcean(ocean);
+            printOcean();
             System.out.println("");
             System.out.println("Your ships: " + myShips + " | Computer ships: " + compShips);
             System.out.println("-------------------------------------------------------");
