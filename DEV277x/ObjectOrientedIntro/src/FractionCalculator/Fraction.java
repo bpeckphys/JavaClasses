@@ -13,7 +13,7 @@ public class Fraction {
     private int numerator;
     private int denominator;
     
-    private Fraction(int myNumerator, int myDenominator){
+    public Fraction(int myNumerator, int myDenominator){
         if (myDenominator == 0){
             throw new IllegalArgumentException("Cannot have \"0\" as a denominator!");
         }else if (myDenominator < 0){
@@ -49,42 +49,42 @@ public class Fraction {
         return ((double) numerator) / ((double) denominator);
     }
     
-    private Fraction add(Fraction other){
+    public Fraction add(Fraction other){
         if(other.denominator == this.denominator){
             numerator = this.numerator + other.numerator;
-            return new Fraction(numerator, denominator);
+            return new Fraction(numerator, denominator).toLowestTerms();
         }else{
             numerator = this.numerator * other.denominator;
-            denominator = this.denominator * other.denominator;
             other.numerator = other.numerator * this.denominator;
+            denominator = this.denominator * other.denominator;
             numerator = this.numerator + other.numerator;
-            return new Fraction(numerator, denominator);
+            return new Fraction(numerator, denominator).toLowestTerms();
         }
     }
     
-    private Fraction subtract(Fraction other){
+    public Fraction subtract(Fraction other){
         if(other.denominator == this.denominator){
             numerator = this.numerator - other.numerator;
-            return new Fraction(numerator, denominator);
+            return new Fraction(numerator, denominator).toLowestTerms();
         }else{
             numerator = this.numerator * other.denominator;
-            denominator = this.denominator * other.denominator;
             other.numerator = other.numerator * this.denominator;
+            denominator = this.denominator * other.denominator;
             numerator = this.numerator - other.numerator;
-            return new Fraction(numerator, denominator);
+            return new Fraction(numerator, denominator).toLowestTerms();
         }
     }
     
-    private Fraction multiply(Fraction other){
+    public Fraction multiply(Fraction other){
         numerator = this.numerator * other.numerator;
         denominator = this.denominator * other.denominator;
-        return new Fraction(numerator, denominator);
+        return new Fraction(numerator, denominator).toLowestTerms();
     }
     
-    private Fraction divide(Fraction other){
+    public Fraction divide(Fraction other){
         numerator = this.numerator * other.denominator;
         denominator = this.denominator * other.numerator;
-        return new Fraction(numerator, denominator);
+        return new Fraction(numerator, denominator).toLowestTerms();
     }
     
     public boolean equals(Object other){
@@ -100,8 +100,9 @@ public class Fraction {
     }
     
     public Fraction toLowestTerms(){
-        numerator = numerator / gcd(numerator, denominator);
-        denominator = denominator / gcd(numerator, denominator);
+        int myGcd = gcd(numerator, denominator);
+        numerator = numerator / myGcd;
+        denominator = denominator / myGcd;
         return new Fraction(numerator, denominator);
     }
     
