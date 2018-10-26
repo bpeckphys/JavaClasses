@@ -19,15 +19,17 @@ public class FractionCalculator {
         // Loop until user exits by pressing q
         while (!quit){
             String operation = getOperation();
+            if (operation.toLowerCase().matches("q")){
+                quit = true;
+                continue;
+            }
             Fraction myFirstFraction = getFraction();
             Fraction mySecondFraction = getFraction();
             Fraction myResultFraction;
             Boolean myResult;
             
             // Call relevant Fraction function according to operation input and then output results
-            if (operation.toLowerCase().matches("q")){
-                quit = true;
-            }else if (operation.matches("\\+")){
+            if (operation.matches("\\+")){
                 myResultFraction = myFirstFraction.add(mySecondFraction);
                 System.out.println(myFirstFraction + " + " + mySecondFraction + " = " + myResultFraction);
             }else if (operation.matches("\\-")){
@@ -49,24 +51,21 @@ public class FractionCalculator {
     
     // Welcome the user
     public static void intro(){
-        System.out.println("This program is a fraction calculator/n "
-                + "It will add, subtract, multiply and divide fractions until you type Q to quit./n"
-                + "Please enter your fractions in the form a/b, where a and b are integers."
+        System.out.println("This program is a fraction calculator\n "
+                + "It will add, subtract, multiply and divide fractions until you type Q to quit.\n"
+                + "Please enter your fractions in the form a/b, where a and b are integers.\n"
                 + "------------------------------------------------------------------------------");
     }
     
     
     // Get the operation the user wishes to perform
     public static String getOperation(){
-        System.out.println("Please enter an operation (+, -, /, *, = or Q to quit): ");
+        System.out.print("Please enter an operation (+, -, /, *, = or Q to quit): ");
         Scanner input = new Scanner(System.in);
         String operation = input.next();
         while (!operation.toLowerCase().matches("[+-/*=q]")){
-            System.out.println("Invalid input (+, -, /, *, = or Q to quit): ");
+            System.out.print("Invalid input (+, -, /, *, = or Q to quit): ");
             operation = input.next();
-        }
-        if (operation.toLowerCase().matches("q")){
-            quit = true;
         }
         return operation;
     }
@@ -76,7 +75,7 @@ public class FractionCalculator {
         // If input contains a "/" check that it doesn't start or end with it
         if (input.contains("/")){
             if (input.charAt(0) == '/' || input.endsWith("/")){
-                System.out.println("Incorrect input, starts or ends with /");
+                //System.out.println("Incorrect input, starts or ends with /");
                 return false;
             }
             // Parse the fraction
@@ -88,17 +87,17 @@ public class FractionCalculator {
             
             // Verify that the numerator and denominator are numbers
             if (!isNumber(numerator) || !isNumber(denominator)){
-                System.out.println("Either the numerator or the denominator are not a number");
+                //System.out.println("Either the numerator or the denominator are not a number");
                 return false;
             }else if (denominator.matches("0")){
-                System.out.println("Cannot have a denominator of 0");
+                //System.out.println("Cannot have a denominator of 0");
                 return false;
             }
             return true;
         }else{
             // Check if the number is valid
             if (!isNumber(input)){
-                System.out.println("String is not a number");
+                //System.out.println("String is not a number");
                 return false;
             }
             return true;
@@ -111,13 +110,13 @@ public class FractionCalculator {
         int denominator;
         
         // Get user input fraction
-        System.out.println("Please enter a fraction (a/b) or integer (a): ");
+        System.out.print("Please enter a fraction (a/b) or integer (a): ");
         Scanner input = new Scanner(System.in);
         String myFraction = input.next();
         
         // Validate that user input is a valid fraction or a quit call
         while (!validFraction(myFraction)){
-            System.out.println("Invalid fraction. Please enter (a/b) or (a), where a and b are integers and b is not zero: ");
+            System.out.print("Invalid fraction. Please enter (a/b) or (a), where a and b are integers and b is not zero: ");
             myFraction = input.next();
         }
         if (myFraction.toLowerCase().matches("q")){
@@ -144,8 +143,7 @@ public class FractionCalculator {
     public static boolean isNumber(String input){
         if (input.startsWith("-")){
             input = input.substring(1,input.length());
-            //System.out.println("Number starts with a negative"
-            //        + "number is now " + input);
+            //System.out.println("Number starts with a negative + "number is now " + input);
         }else if (input.contains("-")){
             //System.out.println("Number did not start with a negative but contains one");
             return false;

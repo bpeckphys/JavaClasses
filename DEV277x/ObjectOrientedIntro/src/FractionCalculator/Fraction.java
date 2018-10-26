@@ -12,9 +12,6 @@ package FractionCalculator;
 public class Fraction {
     private int numerator;
     private int denominator;
-    public int myNum;
-    public int myDen;
-    public int otherNum;
     
     // Returns a Fraction object
     public Fraction(int myNumerator, int myDenominator){
@@ -62,12 +59,12 @@ public class Fraction {
     // Returns the sum of two Fraction objects
     public Fraction add(Fraction other){
         if(other.denominator == this.denominator){
-            myNum = this.numerator + other.numerator;
+            int myNum = this.numerator + other.numerator;
             return new Fraction(myNum, denominator).toLowestTerms();
         }else{
-            myNum = this.numerator * other.denominator;
-            otherNum = other.numerator * this.denominator;
-            myDen = this.denominator * other.denominator;
+            int myNum = this.numerator * other.denominator;
+            int otherNum = other.numerator * this.denominator;
+            int myDen = this.denominator * other.denominator;
             myNum = myNum + otherNum;
             return new Fraction(myNum, myDen).toLowestTerms();
         }
@@ -75,13 +72,14 @@ public class Fraction {
     
     // Returns the difference of two Fraction objects
     public Fraction subtract(Fraction other){
+        int myNum;
         if(other.denominator == this.denominator){
             myNum = this.numerator - other.numerator;
             return new Fraction(myNum, denominator).toLowestTerms();
         }else{
             myNum = this.numerator * other.denominator;
-            otherNum = other.numerator * this.denominator;
-            myDen = this.denominator * other.denominator;
+            int otherNum = other.numerator * this.denominator;
+            int myDen = this.denominator * other.denominator;
             myNum = myNum - otherNum;
             return new Fraction(myNum, myDen).toLowestTerms();
         }
@@ -89,15 +87,15 @@ public class Fraction {
     
     // Returns the product of two Fraction objects
     public Fraction multiply(Fraction other){
-        myNum = this.numerator * other.numerator;
-        myDen = this.denominator * other.denominator;
+        int myNum = this.numerator * other.numerator;
+        int myDen = this.denominator * other.denominator;
         return new Fraction(myNum, myDen).toLowestTerms();
     }
     
     // Returns the quotient of two Fraction objects
     public Fraction divide(Fraction other){
-        myNum = this.numerator * other.denominator;
-        myDen = this.denominator * other.numerator;
+        int myNum = this.numerator * other.denominator;
+        int myDen = this.denominator * other.numerator;
         return new Fraction(myNum, myDen).toLowestTerms();
     }
     
@@ -122,8 +120,8 @@ public class Fraction {
     // Returns the reduced Fraction object
     public Fraction toLowestTerms(){
         int myGcd = gcd(numerator, denominator);
-        myNum = numerator / myGcd;
-        myDen = denominator / myGcd;
+        int myNum = numerator / myGcd;
+        int myDen = denominator / myGcd;
         return new Fraction(myNum, myDen);
     }
     
