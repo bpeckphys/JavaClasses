@@ -10,18 +10,22 @@ package CompanyStructure;
  * @author bpeck
  */
 public class Employee {
-    public static int employeeID = 0;
-    public static String employeeName;
+    private static int employeeIDCount = 0;
+    private int employeeID;
+    private String employeeName;
     public double employeeBaseSalary;
+    private Employee employeeManager;
     
     /* 
      *  Constructs a new employee object and takes in two parameters, 
      *  one for the name of the user and one for their base salary
      */
     public Employee(String name, double baseSalary){
-        employeeID ++;
+        employeeIDCount ++;
+        employeeID = employeeIDCount;
         employeeName = name;
         employeeBaseSalary = baseSalary;
+        employeeManager = null;
     }
     
     //  Returns the employee's current salary
@@ -37,5 +41,30 @@ public class Employee {
     // Returns the employee's ID
     public int getEmployeeID(){
         return this.employeeID;
+    }
+    
+    // Returns the employee's manager
+    public Employee getManager(){
+        return this.employeeManager;
+    }
+    
+    // Checks if two employee ID's are equal
+    public boolean equals(Employee other){
+        if (this.employeeID == other.getEmployeeID()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    // Returns a string that represents the Employee ID followed by their name
+    public String toString(){
+        String employee = this.getEmployeeID() + " " + this.getName();
+        return employee;
+    }
+    
+    // Returns a string representation of the Employee's Status
+    public String employeeStatus(){
+        return toString();
     }
 }
