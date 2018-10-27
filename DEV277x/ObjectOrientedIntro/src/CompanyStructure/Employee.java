@@ -30,22 +30,22 @@ public class Employee {
     
     //  Returns the employee's current salary
     public double getBaseSalary(){
-        return this.employeeBaseSalary;
+        return employeeBaseSalary;
     }
     
     // Returns the employee's current name
     public String getName(){
-        return this.employeeName;
+        return employeeName;
     }
     
     // Returns the employee's ID
     public int getEmployeeID(){
-        return this.employeeID;
+        return employeeID;
     }
     
     // Returns the employee's manager
     public Employee getManager(){
-        return this.employeeManager;
+        return employeeManager;
     }
     
     // Checks if two employee ID's are equal

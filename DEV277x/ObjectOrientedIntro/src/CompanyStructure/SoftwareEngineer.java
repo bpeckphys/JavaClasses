@@ -34,6 +34,8 @@ public class SoftwareEngineer extends TechnicalEmployee{
     /*  Check if this SoftwareEngineer's manager approves of checkin. If so,
      *  increase successful checkin count and return "true". If not, change
      *  codeAccess to false and return "false".
+     *  
+     *  TODO: implement this function
      */
     public boolean checkInCode(){
         return false;

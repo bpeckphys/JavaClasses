@@ -30,6 +30,8 @@ public class Accountant extends BusinessEmployee{
     /*  Saves passed reference to TechnicalLead. Updates Accountant's bonus budget
      *  to the total of each SoftwareEngineer's base salary that reports to that
      *  TechnicalLead plus 10%.
+     *  
+     *  TODO: finish implementing this function
      */
     public void supportTeam(TechnicalLead lead){
         this.teamSupported = lead;

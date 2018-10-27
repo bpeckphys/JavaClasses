@@ -24,6 +24,7 @@ public class BusinessLead extends BusinessEmployee{
     }
     
     // Returns true if the number of direct reports is less than Manager's headcount
+    // TODO: implement this function
     public boolean hasHeadCount(){
         return false;
     }
@@ -33,6 +34,8 @@ public class BusinessLead extends BusinessEmployee{
      *  time a report is added, increase bonus budget by 1.1 * report's base
      *  salary. If report is added, their supported team should be updated
      *  to reflect the Tech Lead reference given. If added, return true.
+     *  
+     *  TODO: implement this function
      */
     public boolean addReport(Accountant e, TechnicalLead supportTeam){
         return false;
@@ -41,6 +44,8 @@ public class BusinessLead extends BusinessEmployee{
     /*  Check if bonus requested fits in manager's budget. If so, employee gets
      *  bonus and manager's budget should be decreased by that amount and method
      *  should return true.
+     *  
+     *  TODO: implement this function
      */
     public boolean approveBonus(Employee e, double bonus){
         return false;

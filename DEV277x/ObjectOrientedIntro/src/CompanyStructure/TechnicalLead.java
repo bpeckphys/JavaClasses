@@ -24,12 +24,15 @@ public class TechnicalLead extends TechnicalEmployee{
     }
     
     // Returns true if number of direct reports is less than Lead's headcount
+    // TODO: implement this function
     public boolean hasHeadCount(){
         return true;
     }
     
     /*  Accepts reference to SoftwareEngineer and if Lead has head count left
      *  adds this employee to their list of direct reports. If added return true
+     *  
+     *  TODO: implement this function
      */
     public boolean addReport(SoftwareEngineer e){
         return false;
@@ -37,6 +40,8 @@ public class TechnicalLead extends TechnicalEmployee{
     
     /*  Checks if passed employee reports to Lead and if code access is true.
      *  Return true if both are true, else return false
+     *  
+     *  TODO: implement this function
      */
     public boolean approveCheckIn(SoftwareEngineer e){
         return false;
@@ -44,6 +49,8 @@ public class TechnicalLead extends TechnicalEmployee{
     
     /*  Check if bonus amount requested would be approved by BusinessLead that
      *  supports TechLead. If yes, employee gets bonus and true is returned
+     *  
+     *  TODO: implement this function
     */
     public boolean requestBonus(Employee e, double bonus){
         return false;
