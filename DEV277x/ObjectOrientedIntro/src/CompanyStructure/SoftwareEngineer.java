@@ -10,7 +10,8 @@ package CompanyStructure;
  * @author bpeck
  */
 public class SoftwareEngineer extends TechnicalEmployee{
-    private static boolean codeAccess;
+    private boolean codeAccess;
+    private TechnicalLead employeeManager;
     
     /* 
      *  Constructs a new software engineer object and takes in one parameter, 
@@ -34,10 +35,26 @@ public class SoftwareEngineer extends TechnicalEmployee{
     /*  Check if this SoftwareEngineer's manager approves of checkin. If so,
      *  increase successful checkin count and return "true". If not, change
      *  codeAccess to false and return "false".
-     *  
-     *  TODO: implement this function
      */
     public boolean checkInCode(){
-        return false;
+        if (employeeManager == null){
+            return false;
+        }else if (getManager().approveCheckIn(this)){
+            codeChecks += 1;
+            return true;
+        }else{
+            setCodeAccess(false);
+            return false;
+        }
+    }
+    
+    // Returns the employee's manager
+    public TechnicalLead getManager(){
+        return employeeManager;
+    }
+    
+    // Sets the employee's manager
+    public void setManager(TechnicalLead manager){
+        employeeManager = manager;
     }
 }

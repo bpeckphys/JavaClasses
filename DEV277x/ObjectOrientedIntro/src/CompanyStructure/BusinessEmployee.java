@@ -11,7 +11,7 @@ package CompanyStructure;
  */
 public class BusinessEmployee extends Employee {
     private static int baseSalary = 50000;
-    public static double bonusBudget;
+    public double bonusBudget;
     
     /* 
      *  Constructs a new technical employee object and takes in one parameter, 
@@ -33,6 +33,6 @@ public class BusinessEmployee extends Employee {
      *  the size of their current managed budget
      */
     public String employeeStatus(){
-        return super.employeeStatus() + " with a budget of ";
+        return super.employeeStatus() + " with a budget of " + getBonusBudget();
     }
 }

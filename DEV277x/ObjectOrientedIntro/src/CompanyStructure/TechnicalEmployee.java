@@ -11,7 +11,7 @@ package CompanyStructure;
  */
 public class TechnicalEmployee extends Employee {
     private static int baseSalary = 75000;
-    private static int codeChecks;
+    public int codeChecks;
     
     /* 
      *  Constructs a new technical employee object and takes in one parameter, 

@@ -13,7 +13,7 @@ public class Employee {
     private static int employeeIDCount = 0;
     private int employeeID;
     private String employeeName;
-    public double employeeBaseSalary;
+    private double employeeBaseSalary;
     private Employee employeeManager;
     
     /* 
@@ -33,6 +33,11 @@ public class Employee {
         return employeeBaseSalary;
     }
     
+    // Sets the employee's current salary
+    public void setBaseSalary(double newSalary){
+        employeeBaseSalary = newSalary;
+    }
+    
     // Returns the employee's current name
     public String getName(){
         return employeeName;
@@ -46,6 +51,11 @@ public class Employee {
     // Returns the employee's manager
     public Employee getManager(){
         return employeeManager;
+    }
+    
+    // Sets the employee's manager
+    public void setManager(Employee manager){
+        employeeManager = manager;
     }
     
     // Checks if two employee ID's are equal

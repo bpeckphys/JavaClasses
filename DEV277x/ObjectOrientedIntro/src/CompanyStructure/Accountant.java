@@ -11,6 +11,7 @@ package CompanyStructure;
  */
 public class Accountant extends BusinessEmployee{
     private TechnicalLead teamSupported;
+    private BusinessLead employeeManager;
     
     /* 
      *  Constructs a new accountant object and takes in one parameter, 
@@ -18,7 +19,7 @@ public class Accountant extends BusinessEmployee{
      */
     public Accountant(String name){
         super(name);
-        super.getBonusBudget();
+        bonusBudget = 0;
         teamSupported = null;
     }
     
@@ -30,12 +31,12 @@ public class Accountant extends BusinessEmployee{
     /*  Saves passed reference to TechnicalLead. Updates Accountant's bonus budget
      *  to the total of each SoftwareEngineer's base salary that reports to that
      *  TechnicalLead plus 10%.
-     *  
-     *  TODO: finish implementing this function
      */
     public void supportTeam(TechnicalLead lead){
-        this.teamSupported = lead;
-        this.bonusBudget = super.getBonusBudget() + 1;
+        teamSupported = lead;
+        for (int i = 0; i < teamSupported.directReports.size(); i++){
+            bonusBudget += (teamSupported.directReports.get(i).getBaseSalary() * 1.1);
+        }
     }
     
     /*  Takes suggested bonus and checks if there is enough room in the budget.
@@ -46,9 +47,10 @@ public class Accountant extends BusinessEmployee{
         if (this.teamSupported == null){
             return false;
         }
-        if (bonus > this.bonusBudget){
+        if (bonus > bonusBudget){
             return false;
         }else{
+            bonusBudget -= bonus;
             return true;
         }
     }
@@ -58,5 +60,15 @@ public class Accountant extends BusinessEmployee{
      */
     public String employeeStatus(){
         return super.employeeStatus() + " is supporting " + this.teamSupported;
+    }
+    
+    // Returns the employee's manager
+    public BusinessLead getManager(){
+        return employeeManager;
+    }
+    
+    // Sets the employee's manager
+    public void setManager(BusinessLead manager){
+        employeeManager = manager;
     }
 }
