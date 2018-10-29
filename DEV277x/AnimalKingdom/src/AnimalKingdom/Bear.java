@@ -11,13 +11,13 @@ import java.lang.Math.*;
  * @author bpeck
  */
 public class Bear extends Critter{
-    // Makes ~50% polar bears
-    private boolean polar = Math.random() < 0.5;;
+    private boolean polar;
     private int moveNumber;
     
     // Construct the Bear
     public Bear(){
         moveNumber = 0;
+        polar = Math.random() < 0.5;
     }
     
     // Overrides the getColor method from Critter to set the Bear's color
